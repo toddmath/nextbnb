@@ -1,9 +1,9 @@
+import fetch from 'isomorphic-unfetch'
 import { useState } from 'react'
 import { useStoreActions } from 'easy-peasy'
 import Layout from '../../components/Layout'
 import Head from 'next/head'
 import DateRangePicker from '../../components/DateRangePicker'
-import houses from '../houses.json'
 
 const calcNights = (startDate, endDate) => {
   const start = new Date(startDate)
@@ -18,7 +18,7 @@ const calcNights = (startDate, endDate) => {
 }
 
 const House = ({
-  house: { picture, title, type, town, rating, reviewsCount, price },
+  house: { picture, title, type, town, rating, reviewsCount, price, reviews },
 }) => {
   const [dateChosen, setDateChosen] = useState(false)
   const [numberOfNights, setNumberOfNights] = useState(0)
@@ -44,9 +44,21 @@ const House = ({
             {type} - {town}
           </p>
           <p>{title}</p>
-          <p>
-            {rating} ({reviewsCount})
-          </p>
+          {reviewsCount > 0 ? (
+            <div className='reviews'>
+              <h3>{reviewsCount} Reviews</h3>
+              {reviews.map((review, index) => {
+                return (
+                  <div key={index}>
+                    <p>{new Date(review.createdAt).toDateString()}</p>
+                    <p>{review.comment}</p>
+                  </div>
+                )
+              })}
+            </div>
+          ) : (
+            <></>
+          )}
         </article>
         <aside>
           <h2>Add dates for prices</h2>
@@ -87,11 +99,13 @@ const House = ({
   )
 }
 
-House.getInitialProps = ({ query }) => {
+House.getInitialProps = async ({ query }) => {
   const { id } = query
+  const res = await fetch(`http://localhost:3000/api/houses/${id}`)
+  const house = await res.json()
 
   return {
-    house: houses.filter(house => house.id === id)[0],
+    house,
   }
 }
 

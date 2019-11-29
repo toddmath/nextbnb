@@ -1,12 +1,9 @@
+import fetch from 'isomorphic-unfetch'
 import Layout from '../components/Layout'
 import House from '../components/House'
-import houses from './houses.json'
+// import houses from './houses.json'
 
-// const content = (
-
-// )
-
-const Index = () => (
+const Index = ({ houses }) => (
   <Layout>
     <div className='index'>
       <h2>Places to stay</h2>
@@ -36,5 +33,13 @@ const Index = () => (
     </div>
   </Layout>
 )
+
+Index.getInitialProps = async () => {
+  const res = await fetch(`http://localhost:3000/api/houses`)
+  const houses = await res.json()
+  return {
+    houses,
+  }
+}
 
 export default Index
