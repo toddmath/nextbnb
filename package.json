@@ -19,7 +19,7 @@
     "connect-session-sequelize": "^6.0.0",
     "date-fns": "^2.8.1",
     "easy-peasy": "^3.2.3",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.17.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.3.2",
