@@ -29,6 +29,6 @@
     "react": "^16.12.0",
     "react-day-picker": "^7.4.0",
     "react-dom": "^16.12.0",
-    "sequelize": "^5.22.5"
+    "sequelize": "^6.29.0"
   }
 }
