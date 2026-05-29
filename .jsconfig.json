@@ -1,0 +1,23 @@
+{
+  "typeAcquisition": [
+    "express",
+    "express-session",
+    "sequelize",
+    "pg",
+    "pg-hstore",
+    "passport",
+    "passport-local",
+    "next",
+    "easy-peasy",
+    "axios",
+    "stripe",
+    "react",
+    "react-dom"
+  ],
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "checkJs": true
+  },
+  "exclude": ["node_modules", "**/node_modules/*"]
+}

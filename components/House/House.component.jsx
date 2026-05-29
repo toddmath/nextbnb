@@ -1,10 +1,11 @@
 import Link from 'next/link'
+import { StyledHouseImg } from './House.styles'
 
 const House = ({ id, title, picture, type, town, rating, reviewsCount }) => (
   <Link as={`/houses/${id}`} href='houses/[id]' scroll>
     <a>
       <div>
-        <img className='house-img' src={picture} width='100%' alt={title} />
+        <StyledHouseImg src={picture} width='100%' alt={title} />
         <p>
           {type} - {town}
         </p>
@@ -14,13 +15,6 @@ const House = ({ id, title, picture, type, town, rating, reviewsCount }) => (
             {rating} ({reviewsCount})
           </p>
         )}
-
-        <style jsx>{`
-          .house-img {
-            max-width: 100%;
-            height: auto;
-          }
-        `}</style>
       </div>
     </a>
   </Link>

@@ -10,9 +10,10 @@ Review.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    houseId: { type: Sequelize.DataTypes.INTEGER, allowNull: false },
+    house: { type: Sequelize.DataTypes.STRING, allowNull: true },
     userId: { type: Sequelize.DataTypes.STRING, allowNull: false },
     comment: { type: Sequelize.DataTypes.TEXT, allowNull: false },
+    houseId: { type: Sequelize.DataTypes.INTEGER, allowNull: false },
   },
   {
     sequelize,

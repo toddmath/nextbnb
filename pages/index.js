@@ -1,36 +1,35 @@
 import fetch from 'isomorphic-unfetch'
-import Layout from '../components/Layout'
-import House from '../components/House'
+import styled from 'styled-components'
+import Layout from '../components/Layout/Layout.component'
+import House from '../components/House/House.component'
 // import houses from './houses.json'
+
+const StyledIndex = styled.div`
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+`
+
+const StyledHousesContainer = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 300px 300px;
+  grid-gap: 40px;
+`
 
 const Index = ({ houses }) => (
   <Layout>
-    <div className='index'>
+    <StyledIndex>
       <h2>Places to stay</h2>
 
-      <div className='houses'>
+      <StyledHousesContainer>
         {houses.map((house, index) => (
           <House key={index} {...house} />
         ))}
-      </div>
-
-      <style jsx>{`
-        .index {
-          width: 100%;
-          height: auto;
-          padding: 0;
-          margin: 0;
-          overflow-x: hidden;
-        }
-
-        .houses {
-          display: grid;
-          grid-template-columns: 50% 50%;
-          grid-template-rows: 300px 300px;
-          grid-gap: 40px;
-        }
-      `}</style>
-    </div>
+      </StyledHousesContainer>
+    </StyledIndex>
   </Layout>
 )
 

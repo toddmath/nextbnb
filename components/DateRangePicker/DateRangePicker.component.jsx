@@ -4,6 +4,12 @@ import { DateUtils } from 'react-day-picker'
 import dateFnsFormat from 'date-fns/format'
 import dateFnsParse from 'date-fns/parse'
 import 'react-day-picker/lib/style.css'
+import {
+  StyledDateRangeContainer,
+  StyledDateRangeLabel,
+  StyledDateRangeSpan,
+  StyledDateRangeInput,
+} from './DateRangePicker.styles'
 
 const format = 'MMMM dd, yyyy'
 const today = new Date()
@@ -21,7 +27,7 @@ const formatDate = (date, format, locale) => {
   return dateFnsFormat(date, format, { locale })
 }
 
-const nightsBetweenDates = (startDate, endDate) => {
+const nightsBetween = (startDate, endDate) => {
   const start = new Date(startDate)
   const end = new Date(endDate)
   let dayCount = 0
@@ -42,27 +48,27 @@ export default ({ datesChanged, bookedDates }) => {
   const onSetStartDate = day => {
     setStartDate(day)
     const newEndDate = new Date(day)
-    if (nightsBetweenDates(day, endDate) < 1) {
+    if (nightsBetween(day, endDate) < 1) {
       newEndDate.setDate(newEndDate.getDate() + 1)
       setEndDate(newEndDate)
     }
     datesChanged(day, newEndDate)
   }
 
-  const dateCreate = () => {
+  const bookedArray = () => {
     if (bookedDates.length > 0) {
       return bookedDates.map(date => new Date(date))
     }
     return [...bookedDates]
   }
 
-  const alreadyBooked = dateCreate()
+  const alreadyBooked = bookedArray()
 
   return (
-    <div className='date-range-picker-container'>
-      <div>
-        <label>From:</label>
-        <span className='InputStart'>
+    <StyledDateRangeContainer>
+      <StyledDateRangeInput>
+        <StyledDateRangeLabel>From:</StyledDateRangeLabel>
+        <StyledDateRangeSpan>
           <DayPickerInput
             formatDate={formatDate}
             format={format}
@@ -82,12 +88,12 @@ export default ({ datesChanged, bookedDates }) => {
             }}
             onDayChange={day => onSetStartDate(day)}
           />
-        </span>
-      </div>
+        </StyledDateRangeSpan>
+      </StyledDateRangeInput>
 
-      <div>
-        <label>To:</label>
-        <span className='InputEnd'>
+      <StyledDateRangeInput>
+        <StyledDateRangeLabel>To:</StyledDateRangeLabel>
+        <StyledDateRangeSpan>
           <DayPickerInput
             formatDate={formatDate}
             format={format}
@@ -110,63 +116,13 @@ export default ({ datesChanged, bookedDates }) => {
               datesChanged(startDate, day)
             }}
           />
-        </span>
-      </div>
+        </StyledDateRangeSpan>
+      </StyledDateRangeInput>
       <p>
         {startDate && endDate
           ? `From ${formatLocale(startDate)} to ${formatLocale(endDate)}`
           : 'Please enter both a start and end day.'}
       </p>
-
-      {/* CSS */}
-      <style jsx>{`
-        .date-range-picker-container div {
-          display: grid;
-          border: 1px solid #ddd;
-          grid-template-columns: 20% 80%;
-          padding: 10px;
-        }
-
-        label {
-          padding-top: 10px;
-        }
-      `}</style>
-
-      {/* CSS */}
-      <style jsx global>{`
-        .DayPickerInput input {
-          width: 100%;
-          padding: 10px;
-          font-size: 16px;
-          border-radius: 0.2em;
-          border: 1px solid rgba(158, 158, 158, 1);
-        }
-
-        span.InputStart .DayPicker-Day,
-        .DayPicker-Day--start,
-        .DayPicker-Day--end {
-          border-radius: 0.35em !important;
-        }
-
-        span.InputEnd .DayPicker-Day {
-          border-radius: 0.35em !important;
-        }
-
-        span.InputStart .DayPickerInput-Overlay {
-          width: 280px;
-        }
-
-        span.InputStart {
-          width: 100% !important;
-          margin: 0 !important;
-        }
-
-        div.DayPickerInput .DayPicker-Day--disabled {
-          color: rgba(158, 158, 158, 0.7) !important;
-          background-color: rgba(245, 245, 245, 1) !important;
-          border-radius: 0 !important;
-        }
-      `}</style>
-    </div>
+    </StyledDateRangeContainer>
   )
 }

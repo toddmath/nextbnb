@@ -1,34 +1,66 @@
 {
   "name": "nextbnb",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Proof of concept clone of airbnb built with nextjs and express",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toddmath/nextbnb"
+  },
   "scripts": {
     "dev": "nodemon server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check"
   },
-  "keywords": [],
+  "keywords": [
+    "nextbnb",
+    "nextjs",
+    "express",
+    "easy-peasy"
+  ],
   "author": "toddmath",
   "license": "ISC",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
-    "axios": "^1.15.2",
-    "bcrypt": "^5.0.0",
-    "body-parser": "^1.20.1",
-    "connect-session-sequelize": "^6.0.0",
-    "date-fns": "^2.8.1",
-    "easy-peasy": "^3.2.3",
-    "express": "^4.22.2",
-    "express-session": "^1.17.0",
+    "axios": "^1.16.1",
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.2",
+    "connect-session-sequelize": "^8.0.6",
+    "date-fns": "^4.3.0",
+    "dotenv": "^17.4.2",
+    "easy-peasy": "^6.1.0",
+    "eslint-plugin-prettier": "^5.5.6",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^15.5.18",
-    "passport": "^0.6.0",
+    "next-seo": "^7.2.0",
+    "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "pg": "^8.21.0",
-    "react": "^16.12.0",
-    "react-day-picker": "^7.4.0",
-    "react-dom": "^16.12.0",
-    "sequelize": "^6.37.8"
+    "pg-hstore": "^2.3.3",
+    "postcss-import": "^16.1.1",
+    "prettier": "^3.8.3",
+    "prettier-eslint": "^16.4.2",
+    "react": "^19.2.3",
+    "react-day-picker": "^10.0.1",
+    "react-dom": "^19.2.3",
+    "sequelize": "^6.37.8",
+    "sitemap": "^9.0.1",
+    "stripe": "^22.2.0",
+    "styled-components": "^6.4.2"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.3.0",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "postcss-css-variables": "^0.19.0",
+    "postcss-normalize": "^13.0.1",
+    "postcss-preset-env": "^11.3.0"
   }
 }
