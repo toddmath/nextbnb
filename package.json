@@ -23,7 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
-    "axios": "^1.16.1",
+    "axios": "^1.18.0",
     "bcrypt": "^6.0.0",
     "body-parser": "^2.2.2",
     "connect-session-sequelize": "^8.0.6",
